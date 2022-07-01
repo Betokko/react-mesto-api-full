@@ -26,6 +26,12 @@ app.use(cookieParser());
 app.use(requestLogger);
 app.use(cors({ origin: 'https://mesto-mern.nomoreparties.sbs' }));
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.post(
   '/signin',
   celebrate({
@@ -59,6 +65,6 @@ app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
-mongoose.connect('mongodb://localhost:27017/mestodb');
+mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
