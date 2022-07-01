@@ -1,8 +1,5 @@
-import { formName } from "./constatns";
-import { formDescr } from "./constatns";
-
 const APIToken = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-38',
+  url: 'https://api.mesto-mern.nomoreparties.sbs/',
   authorization: '81838a1e-c453-4d18-88cc-147b40de0a34'
 }
 

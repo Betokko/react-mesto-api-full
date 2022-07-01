@@ -93,6 +93,7 @@ function App() {
       .then(() => {
         newCard._id = currentUser._id;
         newCard.owner = currentUser;
+        newCard.likes = [];
       })
       .then(() => setCards([newCard, ...cards]))
       .then(() => closeAllPopups())
