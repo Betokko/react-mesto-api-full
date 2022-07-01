@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi, errors } = require('celebrate');
+const cors = require('cors');
 
 const userRouter = require('./routes/user');
 const cardRouter = require('./routes/card');
@@ -19,20 +20,11 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 const app = express();
-const allowedCors = ['https://mesto-mern.nomoreparties.sbs'];
 
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(requestLogger);
-
-app.use((req, res, next) => {
-  const { origin } = req.headers;
-  if (allowedCors.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
-  }
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
+app.use(cors());
 
 app.post(
   '/signin',
