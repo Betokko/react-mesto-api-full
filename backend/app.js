@@ -24,7 +24,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(requestLogger);
-app.use(cors({ origin: 'https://mesto-mern.nomoreparties.sbs' }));
+app.use(cors({ origin: '*' }));
 
 app.get('/crash-test', () => {
   setTimeout(() => {
