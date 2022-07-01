@@ -24,7 +24,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(requestLogger);
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: 'https://mesto-mern.nomoreparties.sbs' }));
 
 app.post(
   '/signin',
@@ -59,6 +59,6 @@ app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
-mongoose.connect('mongodb://127.0.0.1:27017/mongodb');
+mongoose.connect('mongodb://localhost:27017/mestodb');
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
