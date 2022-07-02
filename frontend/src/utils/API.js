@@ -1,5 +1,5 @@
 const APIToken = {
-  url: 'https://api.mesto-mern.nomoreparties.sbs/',
+  url: 'https://api.mesto-mern.nomoreparties.sbs',
   authorization: '81838a1e-c453-4d18-88cc-147b40de0a34'
 }
 

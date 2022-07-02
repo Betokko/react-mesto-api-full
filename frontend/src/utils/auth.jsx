@@ -1,4 +1,4 @@
-const BASE_URL = "https://auth.nomoreparties.co";
+const BASE_URL = "https://api.mesto-mern.nomoreparties.sbs";
 
 const checkResponse = (res) => {
   if (res.status === 200) {
