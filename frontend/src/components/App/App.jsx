@@ -176,7 +176,7 @@ function App() {
         .then((res) => {
           setLoggedIn(true);
           history.push("/");
-          setUserData({ _id: res.data._id, email: res.data.email });
+          setUserData({ _id: res._id, email: res.email });
           getProfileInfo();
           getInitialCards();
         })
