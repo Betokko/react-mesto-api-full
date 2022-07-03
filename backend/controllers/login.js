@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const UnauthorizedError = require('../error-classes/UnauthorizedError');
 
-const { PRIVATE_KEY = 'dev-secret' } = process.env;
+const { JWT_SECRET = 'dev-secret' } = process.env;
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
@@ -16,7 +16,7 @@ const login = (req, res, next) => {
       } else {
         bcrypt.compare(password, user.password, (err, result) => {
           if (result) {
-            const token = jwt.sign({ _id: user._id }, PRIVATE_KEY);
+            const token = jwt.sign({ _id: user._id }, JWT_SECRET);
             return res
               .cookie('jwt', token, {
                 maxAge: 3600000 * 24 * 7,
