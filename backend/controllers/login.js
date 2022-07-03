@@ -18,10 +18,10 @@ const login = (req, res, next) => {
           if (result) {
             const token = jwt.sign({ _id: user._id }, JWT_SECRET);
             return res
-              .cookie('jwt', token, {
-                maxAge: 3600000 * 24 * 7,
-                httpOnly: true,
-              })
+              // .cookie('jwt', token, {
+              //   maxAge: 3600000 * 24 * 7,
+              //   httpOnly: true,
+              // })
               .status(200)
               .send({ token });
           }
