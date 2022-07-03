@@ -5,13 +5,15 @@ const { JWT_SECRET = 'dev-secret' } = process.env;
 const err = new UnauthorizedError('Необходима авторизация');
 
 const auth = (req, res, next) => {
-  const { cookies } = req;
+  // const { cookies } = req;
 
-  if (!cookies.jwt) {
-    next(err);
-  }
+  // if (!cookies.jwt) {
+  //   next(err);
+  // }
 
-  const token = cookies.jwt;
+  // const token = cookies.jwt;
+
+  const token = req.headers.authorization.split(' ')[1];
   let payload;
 
   try {
