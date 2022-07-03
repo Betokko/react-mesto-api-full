@@ -1,7 +1,7 @@
 const BASE_URL = "https://api.mesto-mern.nomoreparties.sbs";
 
 const checkResponse = (res) => {
-  if (res.status === 200) {
+  if (res.status === 201 || res.status === 200) {
     return res.json();
   }
   return res.json().then((res) => {
