@@ -12,7 +12,7 @@ const userRouter = require('./routes/user');
 const cardRouter = require('./routes/card');
 const { login } = require('./controllers/login');
 const { createUser } = require('./controllers/user');
-// const { auth } = require('./middlewares/auth');
+const { auth } = require('./middlewares/auth');
 const { errorHandler } = require('./middlewares/errorHandler');
 const NotFoundError = require('./error-classes/NotFoundError');
 const validateUrl = require('./utils/validators');
@@ -59,7 +59,7 @@ app.post(
   }),
   createUser,
 );
-// app.use(auth);
+app.use(auth);
 app.use('/users', userRouter);
 app.use('/cards', cardRouter);
 app.use('*', (req, res, next) => {
