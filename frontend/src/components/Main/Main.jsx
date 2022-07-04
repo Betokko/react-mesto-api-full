@@ -5,7 +5,6 @@ import Card from "../Card/Card";
 
 function Main(props) {
   const currentUser = useContext(CurrentUserContext);
-
   return (
     <>
       <main className="content">

@@ -1,24 +1,24 @@
-import { useState, useEffect } from "react";
-import { Route, Switch, Redirect, useHistory } from "react-router-dom";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useState, useEffect } from 'react';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-import api from "../../utils/API";
-import * as auth from "../../utils/auth";
+import api from '../../utils/API';
+import * as auth from '../../utils/auth';
 
-import Header from "../Header/Header";
-import Main from "../Main/Main";
-import Footer from "../Footer/Footer";
-import PopupWithForm from "../PopupWithForm/PopupWithForm";
-import ImagePopup from "../ImagePopup/ImagePopup";
-import EditProfilePopup from "../EditProfilePopup/EditProfilePopup";
-import EditAvatarPopup from "../EditAvatarPopup/EditAvatarPopup";
-import AddPlacePopup from "../AddPlacePopup/AddPlacePopup";
-import Login from "../Login/Login";
-import Register from "../Register/Register";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import InfoTooltip from "../InfoTooltip/InfoTooltip";
+import Header from '../Header/Header';
+import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
+import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import ImagePopup from '../ImagePopup/ImagePopup';
+import EditProfilePopup from '../EditProfilePopup/EditProfilePopup';
+import EditAvatarPopup from '../EditAvatarPopup/EditAvatarPopup';
+import AddPlacePopup from '../AddPlacePopup/AddPlacePopup';
+import Login from '../Login/Login';
+import Register from '../Register/Register';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
-import "./App.css";
+import './App.css';
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -28,13 +28,13 @@ function App() {
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
-  const [linkName, setLinkName] = useState("");
-  const [linkUrl, setLinkUrl] = useState("");
+  const [linkName, setLinkName] = useState('');
+  const [linkUrl, setLinkUrl] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
   const [userData, setUserData] = useState({});
   const [isTooltipPopupOpen, setIsTooltipPopupOpen] = useState(false);
   const [tooltipPopupStatus, setTooltipPopupStatus] = useState(false);
-  const [tooltipPopupMessage, setTooltipPopupMessage] = useState("");
+  const [tooltipPopupMessage, setTooltipPopupMessage] = useState('');
 
   const history = useHistory();
 
@@ -60,14 +60,13 @@ function App() {
       .getInitialCards()
       .then((res) => {
         setCards([...cards].concat(res));
-        console.log(cards);
       })
       .catch((err) => console.log(err));
   }
 
   // cards
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     api
       .changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
@@ -82,7 +81,7 @@ function App() {
     api
       .removeCard(card._id)
       .then(() => {
-        setCards((state) => state.filter((c) => (c._id !== card._id ? c : "")));
+        setCards((state) => state.filter((c) => (c._id !== card._id ? c : '')));
       })
       .catch((err) => console.log(err));
   }
@@ -99,6 +98,7 @@ function App() {
       .then(() => closeAllPopups())
       .catch((err) => console.log(err));
   }
+
   // /cards
 
   function handleEditProfileClick() {
@@ -170,17 +170,16 @@ function App() {
   }
 
   function checkToken() {
-    const JWT = localStorage.getItem("JWT");
+    const JWT = localStorage.getItem('JWT');
     if (JWT) {
       auth
         .checkValidityToken(JWT)
         .then((res) => {
           setLoggedIn(true);
-          history.push("/");
+          history.push('/');
           setUserData({ _id: res._id, email: res.email });
           getProfileInfo();
           getInitialCards();
-          console.log("Hello");
         })
         .catch((err) => console.log(err));
     }
@@ -192,7 +191,7 @@ function App() {
       .then((res) => {
         setIsTooltipPopupOpen(true);
         setTooltipPopupStatus(true);
-        history.push("/sign-in");
+        history.push('/sign-in');
       })
       .catch((err) => {
         setIsTooltipPopupOpen(true);
@@ -205,9 +204,9 @@ function App() {
     auth
       .login(userData)
       .then((res) => {
-        localStorage.setItem("JWT", res.token);
+        localStorage.setItem('JWT', res.token);
         setLoggedIn(true);
-        history.push("/");
+        history.push('/');
         window.location.reload();
         checkToken();
       })

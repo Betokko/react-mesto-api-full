@@ -21,8 +21,8 @@ function Header({ name, url, loggedIn, onLoggedIn, userData }) {
         <img className="header__logo" src={logo} alt="Логотип" />
       </Link>
       <div>
-        {loggedIn ? userData.email : <Link exact to={url} style={{color: "white", textDecoration: "none",}}>{name}</Link>}
-        {loggedIn ? <Link exact to='#' onClick={handleExitButton} style={{color: "#A9A9A9", textDecoration: "none", marginLeft: "24px"}}>Выйти</Link> : ''} 
+        {loggedIn ? userData.email : <Link to={url} style={{color: "white", textDecoration: "none",}}>{name}</Link>}
+        {loggedIn ? <Link to='#' onClick={handleExitButton} style={{color: "#A9A9A9", textDecoration: "none", marginLeft: "24px"}}>Выйти</Link> : ''} 
       </div>
     </header>
   );
