@@ -10,7 +10,7 @@ function PopupWithForm(props) {
             alt="кнопка закрыть" />
           <h2 className="popup__title">{props.title}</h2>
           {props.children}
-          <button type="submit" name="submit" id="submit" className="popup__button">Сохранить</button>
+          <button type="submit" name="submit" className="popup__button">Сохранить</button>
         </fieldset>
       </form>
     </div>

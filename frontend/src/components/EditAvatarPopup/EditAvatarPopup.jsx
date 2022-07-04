@@ -1,20 +1,24 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
 function EditAvatarPopup(props) {
-  const inputElement = useRef(null);
   const currentUser = useContext(CurrentUserContext);
+  const [link, setLink] = useState("");
 
   useEffect(() => {
-    inputElement.current.value = "";
-  }, [props.isOpen]);
+    setLink(currentUser.avatar)
+  }, [currentUser, props.isOpen]);
+
+  function handleLinkChange(evt) {
+    setLink(evt.target.value)
+  }
 
   function handleSubmit(evt) {
     evt.preventDefault();
 
     props.onUpdateAvatar({
-      avatar: inputElement.current.value,
+      avatar: link
     });
   }
 
@@ -28,14 +32,13 @@ function EditAvatarPopup(props) {
       children={
         <>
           <input
-            ref={inputElement}
             id="avatar-url-descr"
             type="url"
             name="descr"
             className="popup__input popup__text-input"
-            defaultValue=""
             placeholder="Ссылка на картинку"
-            value={currentUser.avatar}
+            value={link}
+            onChange={(evt) => handleLinkChange(evt)}
             required
           />
           <span className="popup__error avatar-url-descr-error"></span>
