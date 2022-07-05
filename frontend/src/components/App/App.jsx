@@ -90,12 +90,12 @@ function App() {
     api
       .loadCard(newCard)
       .then(() => {
-        newCard._id = currentUser._id;
-        newCard.owner = currentUser;
+        newCard.owner = currentUser._id;
         newCard.likes = [];
       })
       .then(() => setCards([newCard, ...cards]))
       .then(() => closeAllPopups())
+      .then(() => window.location.reload())
       .catch((err) => console.log(err));
   }
 

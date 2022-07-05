@@ -75,7 +75,6 @@ class API {
       body: JSON.stringify({ name, link }),
     })
       .then(this._checkResponse)
-      .then((res) => res);
   }
 
   removeCard(cardId) {
