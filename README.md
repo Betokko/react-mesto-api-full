@@ -5,6 +5,6 @@
  client https://mesto-mern.nomoreparties.sbs
  server https://api.mesto-mern.nomoreparties.sbs
  
- Хранение JWT-токена реализовано через LocalStotage, после авторизации пользователя (GET запроса https://api.mesto-mern.nomoreparties.sbs/signin) в ответ пирдет JWT-токен.
- Для тестирования отсальных эндпоинтов в Postmam, в Headers нужно добавить заголовок Authorization со значением "Bearer + JWT-токен"
+ Хранение JWT-токена реализовано через LocalStotage, после авторизации пользователя (GET запрос https://api.mesto-mern.nomoreparties.sbs/signin) в ответ придет JWT-токен.
+ Для тестирования остальных эндпоинтов в Postmam, в Headers нужно добавить заголовок Authorization со значением "Bearer + JWT-токен"
  https://skr.sh/sElD6RhnZki
